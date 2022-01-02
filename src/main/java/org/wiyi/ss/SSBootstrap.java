@@ -5,6 +5,7 @@ import org.wiyi.ss.core.SSConfig;
 import org.wiyi.ss.core.config.SSConfigFactory;
 import org.wiyi.ss.core.config.SSConfigValidator;
 import org.wiyi.ss.utils.SSCommandLineUtils;
+import org.wiyi.ss.utils.VersionUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +38,7 @@ public class SSBootstrap {
                 printHelper(options,command);
                 System.exit(0);
             } else if (cmd.hasOption("v")) {
-                System.out.println("shadowsocks-java v0.1.0");
+                System.out.println(VersionUtils.getVersion());
                 System.exit(0);
             }
 
