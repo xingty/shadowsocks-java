@@ -44,6 +44,24 @@ options:
 
 ```
 
+```
+usage: ssserver [FLAGS] [OPTIONS]
+
+flags:
+ -h,--help      Prints help info
+ -v,--version   Show version number
+
+options:
+ -b,--outbound-bind-addr <arg>   Bind address
+ -c,--config <arg>               Configuration file
+ -k,--password <arg>             Password
+ -m,--method <arg>               Cipher method. ['rc4-md5',
+                                 'aes-128/192/256-cfb/ctr','aes-128/256-gcm','chacha20-ietf-poly1305']
+ -s,--server-addr <arg>          Server address. (format: host:port)
+ -t,--timeout <arg>              Connection timeout
+ -up,--udp-port <arg>            UDP port
+```
+
 **ss-local**   
 
 Start ss-local through command line argument.
