@@ -9,6 +9,8 @@ import org.wiyi.ss.core.SSRequest;
 import org.wiyi.ss.net.AttrKeys;
 import org.wiyi.ss.utils.SSRequestUtils;
 
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 import java.util.Objects;
 
 public class Socks5Handler extends SimpleChannelInboundHandler<Socks5Message> {
@@ -44,8 +46,13 @@ public class Socks5Handler extends SimpleChannelInboundHandler<Socks5Message> {
 
         SSRequest req = SSRequestUtils.getFromSocksRequest(request);
         channel.attr(AttrKeys.ADDRESSING_FLIGHT).set(req);
+        InetSocketAddress addr = (InetSocketAddress) channel.localAddress();
+
         Socks5CommandResponse res =
-                new DefaultSocks5CommandResponse(Socks5CommandStatus.SUCCESS,Socks5AddressType.IPv4);
+                new DefaultSocks5CommandResponse(
+                        Socks5CommandStatus.SUCCESS,Socks5AddressType.IPv4,
+                        addr.getHostName(),addr.getPort()
+                );
         context.channel().writeAndFlush(res);
         pipe.remove(this);
         pipe.remove("socks5-command");
